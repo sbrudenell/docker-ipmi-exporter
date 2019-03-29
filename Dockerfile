@@ -1,6 +1,6 @@
 FROM golang:1-alpine
 
-env COMMIT_HASH=0c4d5f0ea293abc799a6cc197e2bf3eeb322f937
+ENV COMMIT_HASH=0c4d5f0ea293abc799a6cc197e2bf3eeb322f937
 
 RUN apk add --no-cache git && go get -d github.com/soundcloud/ipmi_exporter \
 && cd $GOPATH/src/github.com/soundcloud/ipmi_exporter \
