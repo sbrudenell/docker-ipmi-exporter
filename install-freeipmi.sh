@@ -7,7 +7,7 @@ cd /usr/src/freeipmi || exit 1
 
 # install required packages
 apk update
-apk add --no-cache \
+apk add --no-cache --virtual .freeipmi-builddeps \
     bash \
     wget \
     curl \
@@ -67,8 +67,3 @@ cat >>config/config.h <<EOF
 EOF
 
 make LDFLAGS="-L/opt/netdata/lib -all-static" && make install
-
-for t in ipmimonitoring ipmi-sensors ipmi-dcmi bmc-info
-do 
-    ln -s "/opt/netdata/sbin/${t}" "/usr/sbin/${t}"
-done
