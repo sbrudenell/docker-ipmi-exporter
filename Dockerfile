@@ -19,4 +19,4 @@ COPY --from=build-env /opt/netdata/sbin/bmc-info /usr/sbin/.
 
 EXPOSE 9290
 
-ENTRYPOINT [ "ipmi_exporter" ]
+ENTRYPOINT [ "/opt/ipmi_exporter" ]
