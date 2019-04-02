@@ -34,20 +34,20 @@ apk add --no-cache --virtual .freeipmi-builddeps \
 wget 'https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.31.tar.bz2'
 tar -jxvpf libgpg-error-1.31.tar.bz2
 cd libgpg-error-1.31
-./configure --prefix=/opt/netdata --enable-static
+./configure --prefix=/opt/freeipmi --enable-static
 make && make install
 cd ..
 
-# make the rest of the commands use the netdata paths
-export PATH="/opt/netdata/bin:${PATH}"
-export CFLAGS="-I/opt/netdata/include"
-export LDFLAGS="-L/opt/netdata/lib"
+# make the rest of the commands use the freeipmi paths
+export PATH="/opt/freeipmi/bin:${PATH}"
+export CFLAGS="-I/opt/freeipmi/include"
+export LDFLAGS="-L/opt/freeipmi/lib"
 
 # install libgcrypt
 wget 'https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.8.2.tar.bz2'
 tar -jxvpf libgcrypt-1.8.2.tar.bz2
 cd libgcrypt-1.8.2/
-./configure --prefix=/opt/netdata --enable-static
+./configure --prefix=/opt/freeipmi --enable-static
 make && make install
 cd ..
 
@@ -55,7 +55,7 @@ cd ..
 wget https://ftp.gnu.org/gnu/freeipmi/freeipmi-1.6.2.tar.gz
 tar -zxvpf freeipmi-1.6.2.tar.gz
 cd freeipmi-1.6.2/
-./configure --prefix=/opt/netdata --enable-static --disable-shared
+./configure --prefix=/opt/freeipmi --enable-static --disable-shared
 
 # linux does not have getmsg() and putmsg()
 cat >>config/config.h <<EOF
@@ -66,4 +66,4 @@ cat >>config/config.h <<EOF
 
 EOF
 
-make LDFLAGS="-L/opt/netdata/lib -all-static" && make install
+make LDFLAGS="-L/opt/freeipmi/lib -all-static" && make install
